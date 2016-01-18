@@ -10,8 +10,10 @@ func _fixed_process(delta):
 	velocity.y += delta * GRAVITY
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = - WALK_SPEED
+		get_node("AnimatedSprite").set_flip_h(true);
 	elif Input.is_action_pressed("ui_right"):
 		velocity.x =   WALK_SPEED
+		get_node("AnimatedSprite").set_flip_h(false);
 	else:
 		velocity.x = 0
 	if not jump_previous and Input.is_action_pressed("ui_accept"):
