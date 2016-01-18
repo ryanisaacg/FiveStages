@@ -1,3 +1,7 @@
-::res://::1453075945
+::res://::1453079605
 icon.png::ImageTexture::1453075605::
+::res://art::1453119786
 idle.png::ImageTexture::1453075945::
+idle0.png::ImageTexture::1453119776::
+idle1.png::ImageTexture::1453119762::
+idle2.png::ImageTexture::1453119786::
