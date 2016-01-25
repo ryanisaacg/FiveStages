@@ -38,7 +38,6 @@ func _fixed_process(delta):
 		move( motion )
 
 
-
 func _ready():
     set_fixed_process(true)
 
