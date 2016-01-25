@@ -24,6 +24,11 @@ func _fixed_process(delta):
 		var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
 		if returnval.size() != 0:
 			velocity.y = -400;
+		else:
+			below.x += -abs(velocity.x) / velocity.x * 16;
+			var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
+			if returnval.size() != 0:
+				velocity.y = -400;
 		jump_previous = true;
 	else:
 		jump_previous = false;
@@ -42,4 +47,6 @@ func _ready():
     set_fixed_process(true)
 
 func _on_Area2D_body_enter( body ):
-	get_node("/root").get_child(0).get_node("ghost").get_node("Area2D").jump()
+	var area = get_node("/root").get_child(0).get_node("ghost").get_node("Area2D")
+	area.jump()
+
