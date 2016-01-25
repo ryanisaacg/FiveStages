@@ -44,7 +44,9 @@ func _fixed_process(delta):
 func _ready():
     set_fixed_process(true)
 
-func _on_Area2D_body_enter( body ):
-	var area = get_node("/root").get_child(0).get_node("ghost").get_node("Area2D")
-	area.jump()
+#func _on_Area2D_body_enter( body ):
+	#if body.get_node("..").get_name() == "ghost":
+	#	var area = get_node("/root").get_child(0).get_node("ghost").get_node("Area2D")
+	#	area.jump()
+	#elif body.get
 

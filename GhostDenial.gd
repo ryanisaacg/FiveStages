@@ -14,13 +14,14 @@ func _ready():
 	add_child(timer)
 	timer.set_wait_time(0.5)
 	timer.connect("timeout",self,"clear_cooldown")
+	connect("body_enter", self, "jump")
 	
 func clear_cooldown():
 	jump_cooldown = false
 	print("CLEAR")
 	timer.stop()
 	
-func jump():
+func jump(object):
 	if jump_cooldown:
 		return null;
 	if jumps < MAX_JUMPS:
@@ -36,4 +37,4 @@ func jump():
 		jump_cooldown = true
 		timer.start()
 	else:
-		get_node("/root").get_child(0).get_node("Denial").clear()
+		get_node("/root").get_child(0).get_node("Tile Maps").get_node("Denial").clear()
