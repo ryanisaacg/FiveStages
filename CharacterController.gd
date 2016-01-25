@@ -18,15 +18,15 @@ func _fixed_process(delta):
 		velocity.x = 0
 	if Input.is_action_pressed("ui_accept"):
 		if not jump_previous: 
-			var space = get_world_2d().get_space();
-			var space_state = Physics2DServer.space_get_direct_state( space )
-			var below = self.get_pos();
-			below.y += 20
-			var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
-			below.x += -abs(velocity.x) / velocity.x * 16;
-			var backwards = space_state.intersect_ray(self.get_pos(), below, [self]);
-			if returnval.size() != 0 or backwards.size() != 0:
-				velocity.y = -450;
+			#var space = get_world_2d().get_space();
+			#var space_state = Physics2DServer.space_get_direct_state( space )
+			#var below = self.get_pos();
+			#below.y += 20
+			#var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
+			#below.x += -abs(velocity.x) / velocity.x * 16;
+			#var backwards = space_state.intersect_ray(self.get_pos(), below, [self]);
+			#if returnval.size() != 0 or backwards.size() != 0:
+			velocity.y = -450;
 		jump_previous = true;
 	else:
 		jump_previous = false;

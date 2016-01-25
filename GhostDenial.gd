@@ -4,7 +4,7 @@ extends Area2D
 var jumps = 0
 var jump_cooldown = false
 var timer;
-const MAX_JUMPS = 10
+const MAX_JUMPS = 4
 var parent;
 
 func _ready():
@@ -25,7 +25,6 @@ func jump():
 		return null;
 	if jumps < MAX_JUMPS:
 		var pos = parent.get_pos()
-		pos.y -= 128
 		if jumps % 2 == 0:
 			pos.x -= 900
 			parent.set_flip_h(true);
@@ -36,6 +35,5 @@ func jump():
 		jumps += 1
 		jump_cooldown = true
 		timer.start()
-		
 	else:
-		print("ADVANCE")
+		get_node("/root").get_child(0).get_node("Denial").clear()
