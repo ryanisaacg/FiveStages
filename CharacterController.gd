@@ -16,19 +16,17 @@ func _fixed_process(delta):
 		get_node("AnimatedSprite").set_flip_h(false);
 	else:
 		velocity.x = 0
-	if not jump_previous and Input.is_action_pressed("ui_accept"):
-		var space = get_world_2d().get_space();
-		var space_state = Physics2DServer.space_get_direct_state( space )
-		var below = self.get_pos();
-		below.y += 50
-		var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
-		if returnval.size() != 0:
-			velocity.y = -400;
-		else:
-			below.x += -abs(velocity.x) / velocity.x * 16;
+	if Input.is_action_pressed("ui_accept"):
+		if not jump_previous: 
+			var space = get_world_2d().get_space();
+			var space_state = Physics2DServer.space_get_direct_state( space )
+			var below = self.get_pos();
+			below.y += 20
 			var returnval = space_state.intersect_ray(self.get_pos(), below, [self]);
-			if returnval.size() != 0:
-				velocity.y = -400;
+			below.x += -abs(velocity.x) / velocity.x * 16;
+			var backwards = space_state.intersect_ray(self.get_pos(), below, [self]);
+			if returnval.size() != 0 or backwards.size() != 0:
+				velocity.y = -450;
 		jump_previous = true;
 	else:
 		jump_previous = false;

@@ -25,13 +25,12 @@ func jump():
 		return null;
 	if jumps < MAX_JUMPS:
 		var pos = parent.get_pos()
+		pos.y -= 128
 		if jumps % 2 == 0:
-			pos.y -= 256
-		elif jumps in [3, 7]:
-			pos.x += 900
+			pos.x -= 900
 			parent.set_flip_h(true);
 		else:
-			pos.x -= 900
+			pos.x += 900
 			parent.set_flip_h(false);
 		parent.set_pos(pos)
 		jumps += 1
