@@ -42,4 +42,4 @@ func _ready():
     set_fixed_process(true)
 
 func _on_Area2D_body_enter( body ):
-	print("AREA ENTERED");
+	get_node("/root").get_child(0).get_node("ghost").get_node("Area2D").jump()
