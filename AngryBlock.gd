@@ -6,8 +6,10 @@ extends Area2D
 # var b="textvar"
 
 func _ready():
-	# Initialization here
-	pass
+	connect("body_enter", self, "do_the_stuff")
 
 
 #Actually do the stuff
+func do_the_stuff(body):
+	if body.has_method("returnToSpot"):
+		body.returnToSpot();
