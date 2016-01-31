@@ -10,18 +10,26 @@ var canMoveLeft = true
 var canJump = true
 
 func _fixed_process(delta):
+	var movePenalty = 1
+	var topNodePos = get_node("/root").get_child(0).get_node("DepressionStart").get_pos();
+	var botNodePos = get_node("/root").get_child(0).get_node("DepressionEnd").get_pos();
+	var pos = get_pos()
+	if pos.y >= topNodePos.y and pos.y <= botNodePos.y:
+		var distance = pos.x - topNodePos.x;
+		var maxDistance = topNodePos.x - botNodePos.x;
+		movePenalty = 1 + distance / float(maxDistance)
 	velocity.y += delta * GRAVITY
 	if canMoveLeft and Input.is_action_pressed("ui_left"):
-		velocity.x = - WALK_SPEED
+		velocity.x = - WALK_SPEED * movePenalty
 		get_node("AnimatedSprite").set_flip_h(true);
 	elif canMoveRight and Input.is_action_pressed("ui_right"):
-		velocity.x =   WALK_SPEED
+		velocity.x =   WALK_SPEED * movePenalty
 		get_node("AnimatedSprite").set_flip_h(false);
 	else:
 		velocity.x = 0
 	if canJump and Input.is_action_pressed("ui_accept"):
 		if not jump_previous: 
-			velocity.y = -450;
+			velocity.y = -450 * min(movePenalty * 2, 1);
 		jump_previous = true;
 	else:
 		jump_previous = false;
