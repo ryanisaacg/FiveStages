@@ -8,6 +8,7 @@ var jump_previous = false
 var canMoveRight = true
 var canMoveLeft = true
 var canJump = true
+var flipped = false
 
 func _fixed_process(delta):
 	var movePenalty = 1
@@ -22,9 +23,11 @@ func _fixed_process(delta):
 	if canMoveLeft and Input.is_action_pressed("ui_left"):
 		velocity.x = - WALK_SPEED * movePenalty
 		get_node("AnimatedSprite").set_flip_h(true);
+		flipped = true
 	elif canMoveRight and Input.is_action_pressed("ui_right"):
 		velocity.x =   WALK_SPEED * movePenalty
 		get_node("AnimatedSprite").set_flip_h(false);
+		flipped = false
 	else:
 		velocity.x = 0
 	if canJump and Input.is_action_pressed("ui_accept"):
